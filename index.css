@@ -1,0 +1,44 @@
+.serviceTitle {
+    cursor: pointer;
+    background-color: #1abeff;
+    margin: 0;
+    padding: 5px;
+    display: block;
+}
+
+.attributeGroup {
+    margin: 5px;
+    padding: 3px;
+    border: 1px solid #e5e5e5;
+}
+
+.groupAttribute {
+    margin-left: 10px;
+    margin-right: 1px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+input[type='checkbox'], input[type='image'], input[type='file'] {
+    border: none;
+    background-color: #fff;
+}
+
+input {
+    background-color: #fff;
+    font-family: 'Source Sans Pro',sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1rem;
+    color: #000;
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    outline: none;
+    border: 1px #808080;
+    border-style: none none solid none;
+}
+
+.service {
+    border-bottom: 1px solid black;
+}

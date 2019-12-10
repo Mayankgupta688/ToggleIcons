@@ -1,0 +1,17 @@
+{
+    "Depository Servicese": {
+        "Image Service - Deposit": {
+            "IDD Service (Remote Deposit Capture)": true,
+            "Image Service - Deposit": false,
+            "Sample Deposits": true
+        }, "Image Service - PayementData": {
+            "IDD Service (Remote Deposit Capture)": true,
+            "Image Service - Deposit": false,
+            "Sample Deposits": true
+        }, "Image Service - DepositDataOther": {
+            "IDD Service (Remote Deposit Capture)": true,
+            "Image Service - Deposit": false,
+            "Sample Deposits": true
+        }
+    }
+}
