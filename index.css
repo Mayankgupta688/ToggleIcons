@@ -13,7 +13,7 @@
 }
 
 .groupAttribute {
-    margin-left: 10px;
+    margin-left: 25px;
     margin-right: 1px;
     margin-top: 1px;
     margin-bottom: 1px;
@@ -40,5 +40,20 @@ input {
 }
 
 .service {
-    border-bottom: 1px solid black;
+    margin-bottom: 5px;
+}
+
+.attribute_group_header {
+    background-color: #e1e1e1;
+    margin: 5px;
+    padding: 5px;
+}
+
+.input_checkbox {
+    margin-right: 10px;
+    
+}
+
+.attribute_value {
+    margin-top: 8px;
 }

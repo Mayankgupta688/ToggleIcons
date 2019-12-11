@@ -8,43 +8,76 @@ var createComponent = (function() {
         var newServiceComponent = document.createElement("div")
         newServiceComponent.classList.add("service");
         $(newServiceComponent).append('<span class="serviceTitle" onclick="toggleServiceDetails(event)">' + element.name + '</span>')
-        newServiceComponent.appendChild(serviceAttributes())
-        newServiceComponent.appendChild(serviceAttributes())
-        newServiceComponent.appendChild(serviceAttributes())
+
+        if(element.description == "All domains") {
+            newServiceComponent.appendChild(parentServiceAttributes(element))
+        } else {
+
+            for(let i = 0; i< element.childNode.length; i++) {
+                if(element.childNode[i].childNode.length == 0) {
+                    newServiceComponent.appendChild(parentServiceAttributes(element.childNode[i], false))
+                } else {
+                    newServiceComponent.appendChild(parentServiceAttributes(element.childNode[i], true))
+                }
+            }
+        }
     
         parentComponent.append(newServiceComponent);
     }
-    
-    function serviceAttributes() {
+
+    function parentServiceAttributes(element, hasMultipleCheckbox) {
         var serviceAttritute = document.createElement("div")
-        serviceAttritute.id = "service_attributes_059c305a-ce8e-4e8e-b554-1168b81f5425";
+        serviceAttritute.id = "service_attributes_" + element.key;
         serviceAttritute.className = "serviceAttributes";
-        $(serviceAttritute).append(attributeGroup())
+        $(serviceAttritute).append(parentAttributeGroup(element, hasMultipleCheckbox))
         return serviceAttritute;
     }
-    
-    function attributeGroup() {
+
+    function parentAttributeGroup(element, hasMultipleCheckbox) {
         var attributeGroup = document.createElement("div");
         attributeGroup.className = "attributeGroup"
-        $(attributeGroup).append("<span>IDD Service (Remote Deposit Capture)</span>");
-        $(attributeGroup).append(groupAttribute());
+        if(hasMultipleCheckbox) {
+            $(attributeGroup).append("<div class='attribute_group_header' onclick='toggleGroupDetails(event)' class='group_heading'><span>"+ element.description + "</span></div>");
+        } else {
+            $(attributeGroup).append("<div class='attribute_group_header' onclick='toggleGroupDetails(event)' class='group_heading'><span>"+ element.displayDescription + "</span></div>");
+        }
+        
+        $(attributeGroup).append(parentGroupAttribute(element, hasMultipleCheckbox));
         return attributeGroup;
     }
-    
-    function groupAttribute() {
-        var attribute = document.createElement("div")
-        attribute.className = "attribute_value";
-        attribute.id = "attribute_6998fb21-04d1-435a-b78e-a45d8cc8f399_value";
-        $(attribute).append('<input id="attribute_6998fb21-04d1-435a-b78e-a45d8cc8f399_boolean" type="checkbox" name="booleanAttributes[6998fb21-04d1-435a-b78e-a45d8cc8f399]" value="6998fb21-04d1-435a-b78e-a45d8cc8f399">')
-        $(attribute).append('IDD Service (Remote Deposit Capture)<input type="hidden" class="selectedId" id="selected_attribute_6998fb21-04d1-435a-b78e-a45d8cc8f399_value" value="">')
-        $(attribute).append('<div id="attribute_6998fb21-04d1-435a-b78e-a45d8cc8f399_mapping" class="mapping"></div>')
-    
-        var returnComponent = document.createElement("div")
-        returnComponent.className = "groupAttribute";
-        returnComponent.append(attribute)
-    
-        return returnComponent;
+
+    function parentGroupAttribute(element, hasMultipleCheckbox) {
+        var attribute = null;
+        var returnComponent = null;
+        if(!hasMultipleCheckbox) {
+            attribute = document.createElement("div")
+            attribute.className = "attribute_value";
+            attribute.id = "attribute_" + element.domainCode + "_value";
+            $(attribute).append('<input id="attribute_' + element.domainCode +'_boolean" type="checkbox" class="input_checkbox" name="booleanAttributes[6998fb21-04d1-435a-b78e-a45d8cc8f399]" value="6998fb21-04d1-435a-b78e-a45d8cc8f399">')
+            $(attribute).append(element.description)
+            returnComponent = document.createElement("div")
+            returnComponent.className = "groupAttribute";
+            returnComponent.append(attribute)
+            return returnComponent;
+        } else {
+            returnComponent = document.createElement("div")
+            returnComponent.className = "groupAttribute";
+
+            for(var i = 0; i< element.childNode.length; i++) {
+                attribute = document.createElement("div")
+                attribute.className = "attribute_value";
+                attribute.id = "attribute_" + element.childNode[i].domainCode + "_value";
+                $(attribute).append('<input id="attribute_' + element.childNode[i].domainCode +'_boolean" type="checkbox" class="input_checkbox" name="booleanAttributes[6998fb21-04d1-435a-b78e-a45d8cc8f399]" value="6998fb21-04d1-435a-b78e-a45d8cc8f399">')
+                $(attribute).append(element.childNode[i].description)
+                returnComponent.append(attribute)
+            }
+
+            return returnComponent;
+        }
+        
     }
+
+
 
     return {
         createService: createService
