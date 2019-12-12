@@ -77,8 +77,6 @@ var createComponent = (function() {
         
     }
 
-
-
     return {
         createService: createService
     }
