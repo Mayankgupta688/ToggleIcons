@@ -83,6 +83,8 @@ var createComponent = (function() {
 })()
 
 $(document).ready(() => {
+    var jsonString = JSON.stringify(jsonDataStructure.ApplicationNode)
+    console.dir(jsonString)
     jsonDataStructure.ApplicationNode.forEach((element) => {
         createComponent.createService(element);
     })

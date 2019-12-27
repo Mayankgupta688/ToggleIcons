@@ -66,7 +66,7 @@ var jsonDataStructure = (function() {
     }
 
     return {
-        ApplicationNode: NodeCreator()
+        ApplicationNode: window.jsonData
     }
     
 })();
